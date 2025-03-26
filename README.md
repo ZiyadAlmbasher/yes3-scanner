@@ -9,7 +9,7 @@ YES3 scans an AWS Account for potential S3 security issues in the following cate
 
 For help or feedback, contact us at [info@fogsecurity.io](mailto:info@fogsecurity.io).  We are continuing to build in this space and are developing a more comprehensive scanner with multi-account (Organization) and object-level scanning.  If you're interested in joining a private beta, reach out to us.
 
-Blog Post: <>
+Blog Post: [www.fogsecurity.io/blog/yes3-amazon-s3](www.fogsecurity.io/blog/yes3-amazon-s3)
 
 ## Checks
 
