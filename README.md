@@ -53,8 +53,10 @@ Account Block Public Access Overall Status: OK
 Bucket Summary
 Total Buckets: 14
 ----------------------------
-Buckets potentially public: 0
-[]
+Buckets potentially public: 3
+fog-pub-sample-bucket | Public Method: ['acl']
+fog-pub-sample | Public Method: ['policy', 'acl]
+fog-pub-policy-sample | Public Method: ['policy']
 ----------------------------
 Buckets with Access Issues: 1
 sample-locked-bucket
