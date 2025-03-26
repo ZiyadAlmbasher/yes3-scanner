@@ -1,0 +1,40 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "s3AccountView",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetAccountPublicAccessBlock",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "servicequota",
+            "Effect": "Allow",
+            "Action": [
+                "servicequotas:GetServiceQuota"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "s3BucketView",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketPolicy",
+                "s3:ListBucket",
+                "s3:GetBucketWebsite",
+                "s3:GetBucketVersioning",
+                "s3:GetBucketObjectLockConfiguration",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketOwnershipControls",
+                "s3:GetBucketAcl",
+                "s3:GetLifecycleConfiguration"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
