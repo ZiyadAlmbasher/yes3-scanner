@@ -119,6 +119,7 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
     print("Buckets with Versioning disabled: " + str(len(bucket_results_summary['Versioning'])))
     print("Buckets with Lifecycle Config Set to Expiration: " + str(len(bucket_results_summary['LifecycleConfig'])))
     print("Buckets with Public Access from Website Setting: " + str(len(bucket_results_summary['Website'])))
+    print("Buckets with Server Access Logs Disabled: " + str(len(bucket_results_summary['AccessLogging'])))
     
     print("----------------------------")
     print("Additional Bucket Details")
@@ -140,6 +141,8 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
     print(*bucket_results_summary['LifecycleConfig'], sep=', ')
     print("\n" + "Buckets with Public Access from Website Setting: ", end="")
     print(*bucket_results_summary['Website'], sep=', ')
+    print("\n" + "Buckets with Server Access Logs Disabled: ", end="")
+    print(*bucket_results_summary['AccessLogging'], sep=', ')
 
 
     #print("Recommendation: Use CMKs and non-transparent encryption if possible")
@@ -208,7 +211,8 @@ bucket_results_summary = {
     'ObjectLock': [],
     "Versioning": [],
     "LifecycleConfig": [],
-    "Website": []
+    "Website": [],
+    "AccessLogging": []
     }
 
 access_issues = {}
@@ -421,6 +425,20 @@ for bucket in s3_buckets['Buckets']:
             lifecycle = 'disabled'
         else:
             raise error
+
+    try:
+        bucket_logging = s3_client.get_bucket_logging(
+            Bucket=bucket_name
+        )
+        if bucket_logging.get('LoggingEnabled'):
+            access_logging = 'enabled'
+        else:
+            access_logging = 'disabled'
+            add_to_bucket_summary("AccessLogging", bucket_name)
+
+    except botocore.exceptions.ClientError as error:
+        if error.response['Error']['Code'] == 'AccessDenied':
+            access_issue("AccessLogging", bucket_name)
     
     bucket_results.append({
         'Bucket': bucket_name,
@@ -433,7 +451,8 @@ for bucket in s3_buckets['Buckets']:
         'ObjectLock': object_lock,
         "Versioning": versioning,
         "LifecycleConfig": lifecycle,
-        "Website": website
+        "Website": website,
+        "AccessLogging": access_logging
     })
 
 summarize_results(bucket_results, account_results, bucket_results_summary)
