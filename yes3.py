@@ -239,7 +239,7 @@ for bucket in s3_buckets['Buckets']:
         encryption_setting = encryption['ServerSideEncryptionConfiguration']['Rules'][0]['ApplyServerSideEncryptionByDefault']
         encryption_algorithm = encryption_setting['SSEAlgorithm']
 
-        if encryption_algorithm != 'AES256':
+        if encryption_algorithm != 'AES256' and 'KMSMasterKeyID' in encryption_setting.keys():
             encryption_key = encryption_setting['KMSMasterKeyID']
         else:
             #Bucket uses S3 Managed (AWS Owned)
