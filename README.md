@@ -37,10 +37,10 @@ YES3 Scanner checks for the following S3 configuration items:
 ## Running YES3 Scanner
 
 ```
-python3 yes3.py --profile <your_profile_here> --region <region_specifier>
+python3 yes3.py --profile <your_profile_here>
 ```
 
-Note: While S3 is global, YES3 will check Service Quotas for bucket limits and thus will need a region specified for the BOTO3 client.  It will check S3 globally (assuming proper permissions) as well as the account (global) limit for buckets.
+Note: While S3 is global, certain clients in AWS's boto3 require regions such as Service Quotas, S3 Control, and STS.  YES3 Scanner uses Service Quotas to check for bucket limits and the global limit only shows up in us-east-1.  Due to this, YES3 scanner will use `us-east-1 ` as the default region for Service Quotas, STS, and S3 Control. YES3 Scanner will account for buckets in all regions due to the global nature of S3.  Thus, YES3's API calls will be in CloudTrail in us-east-1.
 
 Example output:
 
