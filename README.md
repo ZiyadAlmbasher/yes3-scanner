@@ -11,6 +11,13 @@ For help or feedback, contact us at [info@fogsecurity.io](mailto:info@fogsecurit
 
 Blog Post: [fogsecurity.io/blog/yes3-amazon-s3](http://www.fogsecurity.io/blog/yes3-amazon-s3)
 
+YES3 has been featured in:
+- Cybr AWS Training: [Cybr Training](https://cybr.com/hands-on-labs/lab/securing-s3-against-ransomware-with-yes3/)
+- AWS Fundamentals Training: [AWS Fundamentals](https://awsfundamentals.com/resources)
+- Help Net Security: [Help Net Security](https://www.helpnetsecurity.com/2025/04/07/yes3-scanner-open-source-s3-security-scanner/)
+- AWS Security Digest: [AWS Security Digest](https://awssecuritydigest.com/past-issues/aws-security-digest-203)
+- tl;dr sec newsletter: [tl;dr Sec](https://tldrsec.com/p/tldr-sec-274)
+
 ## Checks
 
 YES3 Scanner checks for the following S3 configuration items:
