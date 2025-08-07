@@ -63,6 +63,19 @@ python3 yes3.py --profile <your_profile_here>
 
 Note: While S3 is global, certain clients in AWS's boto3 require regions such as Service Quotas, S3 Control, and STS.  YES3 Scanner uses Service Quotas to check for bucket limits and the global limit only shows up in us-east-1.  Due to this, YES3 scanner will use `us-east-1 ` as the default region for Service Quotas, STS, and S3 Control. YES3 Scanner will account for buckets in all regions due to the global nature of S3.  Thus, YES3's API calls will be in CloudTrail in us-east-1.
 
+### Optional: Pass in buckets to scan
+
+By default, YES3 Scanner will scan all buckets in the region in the AWS Account.  To specify specific buckets to run YES3 Scanner on, the `--buckets` argument can be used.  The `--buckets` argument takes in a comma-separated list of bucket names (without spaces).
+
+Example command:
+
+```
+python3 yes3.py --profile <your_profile_here>  --buckets fog-bucket-1,fog-bucket-2,fog-bucket-3
+```
+
+
+### Example Output
+
 Example output:
 
 ```
@@ -73,7 +86,7 @@ Account Settings
 Account Block Public Access Overall Status: OK
 ----------------------------
 Bucket Summary
-Total Buckets: 14
+Buckets Scanned: 14
 ----------------------------
 Buckets potentially public: 3
 fog-pub-sample-bucket | Public Method: ['acl']
